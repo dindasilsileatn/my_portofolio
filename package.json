@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Portfolio Dinda Silsilea",
   "scripts": {
-    "dev": "vite --open index1.html",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview"
   },

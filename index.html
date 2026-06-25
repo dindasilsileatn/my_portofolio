@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio pribadi modern dan elegan" />
+    <title>Portfolio | Dinda Silsileaa</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              cream: "#fffbf8",
+              card: "#ffffff",
+              muted: "#fdf0ee",
+              accent: "#c9506b",
+              accentSoft: "#fde8ed",
+              textMain: "#1e1215",
+              textMuted: "#8a6570",
+              borderLight: "#f0d8dc",
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "serif"],
+              sub: ['"Cormorant Garamond"', "serif"],
+              body: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body id="app-body">
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+      <div class="loader-petals">
+        <div class="loader-petal"></div>
+        <div class="loader-petal"></div>
+        <div class="loader-petal"></div>
+        <div class="loader-petal"></div>
+        <div class="loader-petal"></div>
+      </div>
+      <p
+        style="
+          font-family: &quot;Cormorant Garamond&quot;, serif;
+          font-style: italic;
+          color: var(--accent);
+          font-size: 1.1rem;
+        "
+      >
+        Memuat Portfolio…
+      </p>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Preview" />
+    </div>
+
+    <!-- VUE APP -->
+    <div id="app">
+      <!-- NAVBAR -->
+      <nav id="navbar" :class="{ 'scrolled': scrolled }">
+        <div
+          class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+        >
+          <a
+            href="#hero"
+            class="font-display font-bold text-xl tracking-wide"
+            style="color: var(--text)"
+          >
+            Lea<span style="color: var(--accent)">.</span>
+          </a>
+          <div class="hidden md:flex items-center gap-8">
+            <a
+              v-for="item in navItems"
+              :key="item.id"
+              :href="'#'+item.id"
+              class="nav-link"
+              >{{ item.label }}</a
+            >
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              @click="toggleDark"
+              class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style="background: var(--accent-soft)"
+              title="Toggle Dark Mode"
+            >
+              <span style="font-size: 1.1rem">{{ isDark ? '☀️' : '🌙' }}</span>
+            </button>
+            <button
+              @click="mobileOpen = !mobileOpen"
+              class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            >
+              <span
+                class="w-5 h-0.5 transition-all"
+                :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"
+                style="background: var(--text)"
+              ></span>
+              <span
+                class="w-5 h-0.5 transition-all"
+                :class="mobileOpen ? 'opacity-0' : ''"
+                style="background: var(--text)"
+              ></span>
+              <span
+                class="w-5 h-0.5 transition-all"
+                :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"
+                style="background: var(--text)"
+              ></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" :class="{ 'open': mobileOpen }">
+        <a
+          v-for="item in navItems"
+          :key="item.id"
+          :href="'#'+item.id"
+          @click="mobileOpen=false"
+          class="py-3 text-2xl font-display font-semibold"
+          style="color: var(--text)"
+          >{{ item.label }}</a
+        >
+      </div>
+
+      <!-- ==================== HERO SECTION ==================== -->
+      <section
+        id="hero"
+        class="min-h-screen flex items-center justify-center pt-20"
+        style="background: var(--bg)"
+      >
+        <div class="flower-3d bg-flower-1">
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 20px; height: 20px; top: 30px; left: 30px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-2">
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 25px; height: 25px; top: 37px; left: 37px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-3">
+          <div
+            class="flower-petal"
+            style="
+              width: 22px;
+              height: 22px;
+              top: 0;
+              left: 19px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 22px;
+              height: 22px;
+              top: 0;
+              left: 19px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 22px;
+              height: 22px;
+              top: 0;
+              left: 19px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 22px;
+              height: 22px;
+              top: 0;
+              left: 19px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 22px;
+              height: 22px;
+              top: 0;
+              left: 19px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 15px; height: 15px; top: 22px; left: 22px"
+          ></div>
+        </div>
+
+        <div class="relative z-10 container max-w-6xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-left">
+              <div class="reveal mb-3">
+                <span
+                  class="inline-block px-4 py-1 rounded-full text-sm font-semibold"
+                  style="background: var(--accent-soft); color: var(--accent)"
+                  >✨ Halo, saya</span
+                >
+              </div>
+              <h1
+                class="reveal hero-name font-display font-bold leading-none mb-4 delay-400"
+                style="font-size: clamp(3rem, 10vw, 5.5rem); color: var(--text)"
+              >
+                Dinda Silsilea
+              </h1>
+              <p
+                class="reveal font-sub italic mb-2 delay-400"
+                style="
+                  font-size: clamp(1.1rem, 3vw, 1.5rem);
+                  color: var(--accent);
+                "
+              >
+                UI/UX Designer · Book Lovers
+              </p>
+              <p
+                class="reveal font-body text-sm md:text-base mb-10 delay-600 max-w-lg mx-auto md:mx-0"
+                style="color: var(--text-muted); line-height: 1.8"
+              >
+                Menciptakan pengalaman digital yang indah, fungsional, dan penuh
+                makna — satu desain pada satu waktu.
+              </p>
+              <div
+                class="reveal flex flex-col sm:flex-row gap-4 justify-center md:justify-start delay-600"
+              >
+                <a href="#contact" class="btn-primary">✉ Hubungi Saya</a>
+                <a href="#certificates" class="btn-outline">📜 Sertifikat</a>
+              </div>
+            </div>
+            <div class="flex-1 reveal-zoom flex justify-center">
+              <div class="animated-image">
+                <div class="image-ring"></div>
+                <div
+                  class="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-xl border-4"
+                  style="border-color: var(--border)"
+                >
+                  <img
+                    src="assets/fotocantikbanget.jpeg"
+                    alt="Foto Profil"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div
+                  class="absolute -bottom-4 -right-4 bg-white rounded-full p-2 shadow-md dark:bg-gray-800"
+                >
+                  <span style="font-size: 1.5rem">🌷</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 float-1 opacity-50"
+          >
+            <div
+              style="
+                width: 24px;
+                height: 38px;
+                border: 2px solid var(--accent);
+                border-radius: 99px;
+                display: flex;
+                justify-content: center;
+                padding-top: 6px;
+              "
+            >
+              <div
+                style="
+                  width: 4px;
+                  height: 8px;
+                  background: var(--accent);
+                  border-radius: 99px;
+                  animation: floatY 1.5s ease-in-out infinite;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== ABOUT SECTION ==================== -->
+      <section id="about" class="py-24 px-6 max-w-6xl mx-auto">
+        <div
+          class="flower-3d bg-flower-4"
+          style="top: 10%; right: 5%; left: auto; bottom: auto"
+        >
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 28px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 28px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 28px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 28px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 28px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 22px; height: 22px; top: 34px; left: 34px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-7" style="bottom: 5%; left: 2%">
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 22px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 22px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 22px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 22px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 22px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 18px; height: 18px; top: 26px; left: 26px"
+          ></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div class="reveal-left">
+            <div class="relative">
+              <div class="rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
+                <img
+                  src="assets/fotocantik3.jpeg"
+                  alt="Tentang Saya"
+                  class="w-full h-full object-cover float-1"
+                />
+              </div>
+              <div
+                class="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl opacity-40"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--accent-2),
+                    var(--accent)
+                  );
+                "
+              ></div>
+              <div
+                class="absolute -top-4 -left-4 w-16 h-16 rounded-full opacity-30"
+                style="background: var(--accent-soft)"
+              ></div>
+            </div>
+          </div>
+          <div>
+            <p class="reveal section-sub">Tentang</p>
+            <h2 class="reveal section-title mb-4 delay-200">
+              Kenali Saya<br />Lebih Dekat
+            </h2>
+            <div class="floral-divider reveal delay-200 mb-6">
+              <span>✿</span>
+            </div>
+            <p
+              class="reveal font-body text-sm md:text-base leading-relaxed mb-6 delay-400"
+              style="color: var(--text-muted)"
+            >
+              Saya adalah seorang desainer yang suka membaca buku dan menciptakan karya
+              visual yang bermakna. Dengan latar belakang Desain Komunikasi
+              Visual, saya menggabungkan estetika dan fungsi untuk menghadirkan
+              pengalaman yang tak terlupakan.
+            </p>
+            <p
+              class="reveal font-body text-sm md:text-base leading-relaxed mb-8 delay-400"
+              style="color: var(--text-muted)"
+            >
+              Setiap proyek adalah kesempatan untuk bercerita — melalui warna,
+              tipografi, dan komposisi yang saya pilih dengan penuh kasih dan
+              perhatian.
+            </p>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SKILLS SECTION ==================== -->
+      <section id="skills" class="section-alt py-24 px-6">
+        <div class="flower-3d bg-flower-5" style="top: 15%; left: 3%">
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 18px; height: 18px; top: 25px; left: 25px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-6" style="bottom: 10%; right: 2%">
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 20px; height: 20px; top: 34px; left: 34px"
+          ></div>
+        </div>
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="reveal section-sub">Kemampuan</p>
+            <h2 class="reveal section-title delay-200">
+              Skills &amp; Keahlian
+            </h2>
+            <div class="floral-divider reveal delay-400 mt-4">
+              <span>✿</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="reveal stagger-1">
+              <h3
+                class="font-display text-xl font-semibold mb-6"
+                style="color: var(--text)"
+              >
+                Technical Skills
+              </h3>
+              <div class="space-y-5">
+                <div v-for="skill in technicalSkills" :key="skill.name">
+                  <div class="flex justify-between mb-2">
+                    <span
+                      class="font-body text-sm font-medium"
+                      style="color: var(--text)"
+                      >{{ skill.name }}</span
+                    ><span
+                      class="font-body text-sm"
+                      style="color: var(--accent)"
+                      >{{ skill.level }}%</span
+                    >
+                  </div>
+                  <div class="skill-bar-bg">
+                    <div
+                      class="skill-bar-fill"
+                      :data-width="skill.level"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal stagger-2">
+              <h3
+                class="font-display text-xl font-semibold mb-6"
+                style="color: var(--text)"
+              >
+                Soft Skills
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  v-for="skill in softSkills"
+                  :key="skill"
+                  class="px-4 py-2 rounded-full font-body text-sm glass"
+                  style="color: var(--text); border: 1px solid var(--border)"
+                  >{{ skill }}</span
+                >
+              </div>
+              <h3
+                class="font-display text-xl font-semibold mt-10 mb-6"
+                style="color: var(--text)"
+              >
+                Tools
+              </h3>
+              <div class="grid grid-cols-3 gap-3">
+                <div
+                  v-for="tool in tools"
+                  :key="tool.name"
+                  class="glass rounded-xl p-3 text-center reveal-zoom hover:scale-105 transition-transform cursor-default"
+                >
+                  <div style="font-size: 1.5rem">{{ tool.icon }}</div>
+                  <p
+                    class="font-body text-xs mt-1"
+                    style="color: var(--text-muted)"
+                  >
+                    {{ tool.name }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== EDUCATION SECTION ==================== -->
+      <section id="education" class="section-alt py-24 px-6">
+        <div class="flower-3d bg-flower-1" style="top: 20%; left: 3%">
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 26px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 26px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 26px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 26px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 26px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 18px; height: 18px; top: 31px; left: 31px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-4" style="bottom: 15%; right: 2%">
+          <div
+            class="flower-petal"
+            style="
+              width: 36px;
+              height: 36px;
+              top: 0;
+              left: 32px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 36px;
+              height: 36px;
+              top: 0;
+              left: 32px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 36px;
+              height: 36px;
+              top: 0;
+              left: 32px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 36px;
+              height: 36px;
+              top: 0;
+              left: 32px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 36px;
+              height: 36px;
+              top: 0;
+              left: 32px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 22px; height: 22px; top: 39px; left: 39px"
+          ></div>
+        </div>
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="reveal section-sub">Latar Belakang</p>
+            <h2 class="reveal section-title delay-200">Pendidikan</h2>
+            <div class="floral-divider reveal delay-400 mt-4">
+              <span>✿</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3
+                class="font-display text-lg font-semibold mb-5 reveal"
+                style="color: var(--text)"
+              >
+                Kenangan Akademik
+              </h3>
+              <div class="grid grid-cols-3 gap-2">
+                <div
+                  v-for="(photo, i) in eduPhotos"
+                  :key="i"
+                  class="photo-item reveal-zoom"
+                  :class="'stagger-'+(i+1)"
+                  @click="openLightbox(photo.src)"
+                >
+                  <img :src="photo.src" :alt="photo.alt" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="relative pl-12">
+                <div class="timeline-line"></div>
+                <div
+                  v-for="(edu, i) in educations"
+                  :key="i"
+                  class="reveal mb-8"
+                  :class="'stagger-'+(i+1)"
+                >
+                  <div
+                    class="flex items-start gap-4"
+                    style="margin-left: -40px"
+                  >
+                    <div
+                      class="timeline-dot mt-1"
+                      style="margin-left: 13px"
+                    ></div>
+                    <div class="glass rounded-2xl p-5 flex-1 shadow-sm">
+                      <p
+                        class="font-body text-xs font-semibold mb-1"
+                        style="color: var(--accent); letter-spacing: 0.06em"
+                      >
+                        {{ edu.period }}
+                      </p>
+                      <h3
+                        class="font-display text-base font-semibold"
+                        style="color: var(--text)"
+                      >
+                        {{ edu.degree }}
+                      </h3>
+                      <p
+                        class="font-body text-sm italic mb-2"
+                        style="color: var(--text-muted)"
+                      >
+                        {{ edu.school }}
+                      </p>
+                      <p
+                        class="font-body text-xs leading-relaxed"
+                        style="color: var(--text-muted)"
+                      >
+                        {{ edu.desc }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== HOBBIES SECTION ==================== -->
+      <section id="hobbies" class="section-alt py-24 px-6">
+        <div
+          class="flower-3d bg-flower-3"
+          style="top: 12%; left: auto; right: 3%"
+        >
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 17px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 17px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 17px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 17px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 26px;
+              height: 26px;
+              top: 0;
+              left: 17px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 16px; height: 16px; top: 21px; left: 21px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-6" style="bottom: 8%; left: 4%">
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 30px;
+              height: 30px;
+              top: 0;
+              left: 25px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 18px; height: 18px; top: 28px; left: 28px"
+          ></div>
+        </div>
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="reveal section-sub">Di Luar Pekerjaan</p>
+            <h2 class="reveal section-title delay-200">Hobi &amp; Minat</h2>
+            <div class="floral-divider reveal delay-400 mt-4">
+              <span>✿</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+            <div
+              v-for="(hobby, i) in hobbies"
+              :key="hobby.name"
+              class="glass rounded-2xl overflow-hidden reveal"
+              :class="'stagger-'+(i+1)"
+            >
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  :src="hobby.img"
+                  :alt="hobby.name"
+                  class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-4">
+                <p style="font-size: 1.3rem">{{ hobby.icon }}</p>
+                <h3
+                  class="font-display text-base font-semibold mt-1 mb-1"
+                  style="color: var(--text)"
+                >
+                  {{ hobby.name }}
+                </h3>
+                <p
+                  class="font-body text-xs leading-relaxed"
+                  style="color: var(--text-muted)"
+                >
+                  {{ hobby.desc }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CERTIFICATES SECTION ==================== -->
+      <section id="certificates" class="section-alt py-24 px-6">
+        <div class="flower-3d bg-flower-5" style="top: 10%; left: 2%">
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 28px;
+              height: 28px;
+              top: 0;
+              left: 21px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 18px; height: 18px; top: 25px; left: 25px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-7" style="bottom: 10%; right: 2%">
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 32px;
+              height: 32px;
+              top: 0;
+              left: 29px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 20px; height: 20px; top: 34px; left: 34px"
+          ></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="reveal section-sub">Penghargaan</p>
+            <h2 class="reveal section-title delay-200">Sertifikat</h2>
+            <div class="floral-divider reveal delay-400 mt-4">
+              <span>✿</span>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div
+              v-for="(cert, i) in certificates"
+              :key="i"
+              class="glass rounded-2xl overflow-hidden reveal"
+              :class="'stagger-'+(i+1)"
+            >
+              <div
+                class="aspect-[4/3] overflow-hidden cursor-pointer"
+                @click="openLightbox(cert.image)"
+              >
+                <img
+                  :src="cert.image"
+                  :alt="cert.name"
+                  class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-5">
+                <h3
+                  class="font-display text-lg font-semibold"
+                  style="color: var(--text)"
+                >
+                  {{ cert.name }}
+                </h3>
+                <p class="font-body text-sm" style="color: var(--text-muted)">
+                  {{ cert.issuer }}
+                </p>
+                <p class="font-body text-xs mt-1" style="color: var(--accent)">
+                  {{ cert.year }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CONTACT SECTION ==================== -->
+      <section id="contact" class="py-24 px-6">
+        <div class="flower-3d bg-flower-2" style="top: 20%; left: 2%">
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 30px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 30px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 30px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 30px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 34px;
+              height: 34px;
+              top: 0;
+              left: 30px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 22px; height: 22px; top: 36px; left: 36px"
+          ></div>
+        </div>
+        <div class="flower-3d bg-flower-7" style="bottom: 10%; right: 3%">
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(0deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(72deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(144deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(216deg);
+            "
+          ></div>
+          <div
+            class="flower-petal"
+            style="
+              width: 38px;
+              height: 38px;
+              top: 0;
+              left: 31px;
+              transform: rotate(288deg);
+            "
+          ></div>
+          <div
+            class="flower-core"
+            style="width: 24px; height: 24px; top: 37px; left: 37px"
+          ></div>
+        </div>
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="reveal section-sub">Mari Terhubung</p>
+            <h2 class="reveal section-title delay-200">Hubungi Saya</h2>
+            <div class="floral-divider reveal delay-400 mt-4">
+              <span>✿</span>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="max-w-2xl mx-auto">
+              <h3
+                class="font-display text-xl font-semibold mb-6 text-center"
+                style="color: var(--text)"
+              >
+                Ayo Berkolaborasi
+              </h3>
+              <p
+                class="font-body text-sm leading-relaxed mb-8 text-center"
+                style="color: var(--text-muted)"
+              >
+                Saya terbuka untuk peluang baru, kolaborasi kreatif, dan
+                percakapan yang menarik. Jangan ragu untuk menghubungi saya!
+              </p>
+              <div class="space-y-4">
+                <a
+                  v-for="contact in contactInfo"
+                  :key="contact.label"
+                  :href="contact.href"
+                  target="_blank"
+                  rel="noopener"
+                  class="flex items-center gap-4 glass rounded-xl p-4 hover:-translate-y-1 transition-transform"
+                >
+                  <span style="font-size: 1.3rem">{{ contact.icon }}</span>
+                  <div>
+                    <p class="font-body text-xs" style="color: var(--accent)">
+                      {{ contact.label }}
+                    </p>
+                    <p
+                      class="font-body text-sm font-medium"
+                      style="color: var(--text)"
+                    >
+                      {{ contact.value }}
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="py-12 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex justify-center gap-5 mb-8">
+            <a
+              v-for="social in socials"
+              :key="social.name"
+              :href="social.href"
+              class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+              :title="social.name"
+              ><span style="font-size: 1rem">{{ social.icon }}</span></a
+            >
+          </div>
+          <p
+            class="font-display text-2xl font-bold mb-2"
+            style="color: var(--text)"
+          >
+            Dinda Silsilea tragisti
+          </p>
+          <p class="font-sub italic text-sm mb-6" style="color: var(--accent)">
+            UI/UX Designer · Book Lovers
+          </p>
+          <div class="floral-divider mb-6"><span>✿</span></div>
+          <p class="font-body text-xs" style="color: var(--text-muted)">
+            © 2026 Dinda Silsilea tragisti. Dibuat dengan ♡ dan banyak kopi.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Back to Top -->
+    <div
+      id="back-top"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path
+          d="M9 14V4M9 4L4 9M9 4l5 5"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <!-- Vue.js 3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <!-- Script kustom -->
+    <script src="script1.js"></script>
+  </body>
+</html>
