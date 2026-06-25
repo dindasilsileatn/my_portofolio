@@ -34,12 +34,12 @@ createApp({
       { period: '2014 – 2019', degree: 'SDN', school: 'SDN 105374', desc: 'Sekolah dasar.' }
     ];
     const eduPhotos = [
-      { src: 'assets/kenangan1.jpeg', alt: 'Kampus' },
-      { src: 'assets/kenangan2.jpeg', alt: 'Graduation' },
-      { src: 'assets/kenangan3.jpeg', alt: 'Library' },
-      { src: 'assets/kenangan4.jpeg', alt: 'Organisasi' },
-      { src: 'assets/kenangan5.jpeg', alt: 'Kegiatan' },
-      { src: 'assets/kenangan6.jpeg', alt: 'Seminar' }
+      { src: '/kenangan1.jpeg', alt: 'Kampus' },
+      { src: '/kenangan2.jpeg', alt: 'Graduation' },
+      { src: '/kenangan3.jpeg', alt: 'Library' },
+      { src: '/kenangan4.jpeg', alt: 'Organisasi' },
+      { src: '/kenangan5.jpeg', alt: 'Kegiatan' },
+      { src: '/kenangan6.jpeg', alt: 'Seminar' }
     ];
 
     // ===== DATA SERTIFIKAT (DIPERBAIKI) =====
@@ -48,23 +48,23 @@ createApp({
         name: 'SDGS 101',
         issuer: 'SDGS Academy Indonesia',
         year: '2026',
-        image: 'assets/sertifikat1.jpg.jpeg'
+        image: '/sertifikat1.jpg.jpeg'
       },
       {
         name: 'Sertifikat SDGS Pengelolaan Sampah Berkelanjutan',
         issuer: 'SDGS Academy Indonesia',
         year: '2026',
-        image: 'assets/sertifikat2.jpg.jpeg'
+        image: '/sertifikat2.jpg.jpeg'
       }
     ]);
 
     const hobbies = [
-      { name:'Membaca', icon:'📚', desc:'Fiksi dan Non Fiksi.', img: 'assets/fotomembaca.jpeg' },
-      { name:'Menulis', icon:'✍️', desc:'Menulis Novel, Cerpen dan Jurnal Pribadi.', img:'assets/fotomenulis.jpeg' },
-      { name:'Traveling', icon:'✈️', desc:'Menjelajahi keindahan alam dan tempat-tempat baru.', img:'assets/fototraveling.jpeg' },
-      { name:'Fotografi', icon:'📷', desc:'Memotret momen dan estetika sehari-hari.', img:'assets/fotografi.jpeg' },
-      { name:'Menari', icon:'💃🏻', desc:'Menari tarian adat', img:'assets/fotomenari.jpeg' },
-      { name:'Musik', icon:'🎵', desc:'Piano dan playlist indie pop.', img:'assets/fotomusik.jpeg' }
+      { name:'Membaca', icon:'📚', desc:'Fiksi dan Non Fiksi.', img: '/fotomembaca.jpeg' },
+      { name:'Menulis', icon:'✍️', desc:'Menulis Novel, Cerpen dan Jurnal Pribadi.', img:'/fotomenulis.jpeg' },
+      { name:'Traveling', icon:'✈️', desc:'Menjelajahi keindahan alam dan tempat-tempat baru.', img:'/fototraveling.jpeg' },
+      { name:'Fotografi', icon:'📷', desc:'Memotret momen dan estetika sehari-hari.', img:'/fotografi.jpeg' },
+      { name:'Menari', icon:'💃🏻', desc:'Menari tarian adat', img:'/fotomenari.jpeg' },
+      { name:'Musik', icon:'🎵', desc:'Piano dan playlist indie pop.', img:'/fotomusik.jpeg' }
     ];
     const contactInfo = [
       { label:'Email', value:'dindasilsileatn@gmail.com', href:'mailto:dindasilsileatn@gmail.com', icon:'✉️' },
