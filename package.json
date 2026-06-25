@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-lea",
+  "version": "1.0.0",
+  "description": "Portfolio Dinda Silsilea",
+  "scripts": {
+    "dev": "vite --open index1.html",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

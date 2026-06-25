@@ -1,0 +1,5 @@
+{ period: '2025 – sekarang', degree: 'S1 Informatika', school: 'Universitas Satya Terra Bhinneka', desc: 'menjadi mahasiswa dan menjadi perangkat kelas sebagai bendahara.' },
+      { period: '2022 – 2025', degree: 'MA Aliyah', school: 'MAS SKB 3 Menteri Bingkat', desc: 'Jurusan IPS aktif dalam berbagai kegiatan sekolah.' },
+      { period: '2019 – 2022', degree: 'SMPN', school: 'SMPN 2 Pegajahan', desc: 'Sekolah menengah pertama.' }
+      { period: '2014 – 2019', degree: 'SDN', school: 'SDN 105374', desc: 'Sekolah dasar.' }
+    ];
